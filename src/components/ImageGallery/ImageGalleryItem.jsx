@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import defaultImg from './default.jpg';
+import defaultImage from './default.jpg';
 
 const ImageGalleryItem = ({ webformatURL, tags, largeImageURL }) => {
   return (
@@ -16,8 +16,8 @@ const ImageGalleryItem = ({ webformatURL, tags, largeImageURL }) => {
 };
 
 ImageGalleryItem.defaultProps = {
-  webformatURL: defaultImg,
-  largeImageURL: defaultImg,
+  webformatURL: defaultImage,
+  largeImageURL: defaultImage,
 };
 
 ImageGalleryItem.propTypes = {
