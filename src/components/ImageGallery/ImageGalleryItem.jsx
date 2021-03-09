@@ -2,28 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import defaultImage from './default.jpg';
 
-const ImageGalleryItem = ({ webformatURL, tags, largeImageURL }) => {
-  return (
-    <li className="ImageGalleryItem">
-      <img
-        src={webformatURL}
-        alt={tags}
-        data-img={largeImageURL}
-        className="ImageGalleryItem-image"
-      />
-    </li>
-  );
-};
+class ImageGalleryItem extends React.Component {
+  static defaultProps = {
+    webformatURL: defaultImage,
+    largeImageURL: defaultImage,
+  };
 
-ImageGalleryItem.defaultProps = {
-  webformatURL: defaultImage,
-  largeImageURL: defaultImage,
-};
+  static propTypes = {
+    webformatURL: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+    largeImageURL: PropTypes.string.isRequired,
+  };
 
-ImageGalleryItem.propTypes = {
-  webformatURL: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired,
-  largeImageURL: PropTypes.string.isRequired,
-};
+  render() {
+    const { webformatURL, tags, largeImageURL } = this.props;
+
+    return (
+      <li className="ImageGalleryItem">
+        <img
+          className="ImageGalleryItem-image"
+          src={webformatURL}
+          alt={tags}
+          data-img={largeImageURL}
+        />
+      </li>
+    );
+  }
+}
 
 export default ImageGalleryItem;

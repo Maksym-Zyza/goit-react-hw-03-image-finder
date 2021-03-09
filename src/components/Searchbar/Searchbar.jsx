@@ -15,7 +15,7 @@ class Searchbar extends React.Component {
     // передача пропа в App
     this.props.onSubmit(this.state.search);
 
-    // this.setState({ search: '' });
+    this.setState({ search: '' });
   };
 
   render() {
