@@ -1,10 +1,17 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 import Loader from '../Loader';
 
 const modalRoot = document.querySelector('#modal-root');
 
 class Modal extends React.Component {
+  static propTypes = PropTypes.shape({
+    src: PropTypes.string,
+    alt: PropTypes.string,
+    onClose: PropTypes.func,
+  }).isRequired;
+
   state = {
     isLoading: true,
   };

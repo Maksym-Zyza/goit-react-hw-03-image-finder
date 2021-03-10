@@ -26,6 +26,12 @@ img {
   height: auto;
 }
 
+h2 {
+  text-align: center;
+  color: gray;
+  font-style: italic;
+}
+
 /*
  * Стили компонента App
  */

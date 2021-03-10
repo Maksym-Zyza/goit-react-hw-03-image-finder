@@ -1,11 +1,11 @@
 import React from 'react';
-import './styles.css';
 import Searchbar from './components/Searchbar';
 import ImageGallery from './components/ImageGallery';
 import Button from './components/Button/Button';
 import getImg from './components/services/imgAPI';
 import Modal from './components/Modal';
 import Loader from './components/Loader';
+import './styles.css';
 
 class App extends React.Component {
   state = {
@@ -65,6 +65,7 @@ class App extends React.Component {
     const { images, isLoading, showModal, error } = this.state;
     const { src, alt } = this.state.largeImg;
     const renderBtn = images.length > 0 && !isLoading;
+    const start = images.length === 0;
     console.log(images);
 
     return (
@@ -80,6 +81,8 @@ class App extends React.Component {
         {showModal && <Modal src={src} alt={alt} onClose={this.toggleModal} />}
 
         {error && <h1>{error}</h1>}
+
+        {start && <h2>Nothing, please start your search</h2>}
       </div>
     );
   }
