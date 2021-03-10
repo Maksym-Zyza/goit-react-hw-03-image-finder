@@ -36,6 +36,10 @@ class Modal extends React.Component {
     }
   };
 
+  onImgLoad = () => {
+    this.setState({ isLoading: false });
+  };
+
   render() {
     const { src, alt } = this.props;
     const { isLoading } = this.state;
@@ -43,7 +47,7 @@ class Modal extends React.Component {
     return createPortal(
       <div className="Overlay" onClick={this.handleBackdropClose}>
         <div className="Modal">
-          <img src={src} alt={alt} onLoad={this.isLoad} />
+          <img src={src} alt={alt} onLoad={this.onImgLoad} />
 
           {isLoading && <Loader isLoading={isLoading} />}
         </div>
