@@ -1,9 +1,14 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
+import Loader from '../Loader';
 
 const modalRoot = document.querySelector('#modal-root');
 
 class Modal extends React.Component {
+  state = {
+    isLoading: true,
+  };
+
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyClose);
   }
@@ -26,11 +31,14 @@ class Modal extends React.Component {
 
   render() {
     const { src, alt } = this.props;
+    const { isLoading } = this.state;
 
     return createPortal(
       <div className="Overlay" onClick={this.handleBackdropClose}>
         <div className="Modal">
-          <img src={src} alt={alt} />
+          <img src={src} alt={alt} onLoad={this.isLoad} />
+
+          {isLoading && <Loader isLoading={isLoading} />}
         </div>
       </div>,
       modalRoot,

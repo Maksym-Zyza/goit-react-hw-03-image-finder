@@ -210,3 +210,10 @@ img {
   margin: 20px;
   text-align: center;
 }
+
+.loaderDiv {
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+}
