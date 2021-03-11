@@ -1,10 +1,11 @@
 import React from 'react';
 import Searchbar from './components/Searchbar';
 import ImageGallery from './components/ImageGallery';
-import Button from './components/Button/Button';
-import getImg from './components/services/imgAPI';
+import Button from './components/Button';
+import getImg from './services/imgAPI';
 import Modal from './components/Modal';
 import Loader from './components/Loader';
+import scrollTo from './services/scrollTo';
 import './styles.css';
 
 class App extends React.Component {
@@ -18,6 +19,10 @@ class App extends React.Component {
     largeImg: { src: '', alt: '' },
   };
 
+  componentDidMount() {
+    this.fetchImages();
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchQuery !== this.state.searchQuery) {
       this.fetchImages();
@@ -29,7 +34,7 @@ class App extends React.Component {
   };
 
   fetchImages = () => {
-    const { page, searchQuery } = this.state;
+    const { searchQuery, page } = this.state;
     const options = { page, searchQuery };
     this.setState({ isLoading: true });
 
@@ -65,7 +70,7 @@ class App extends React.Component {
     const { images, isLoading, showModal, error } = this.state;
     const { src, alt } = this.state.largeImg;
     const renderBtn = images.length > 0 && !isLoading;
-    const start = images.length === 0;
+    const nothing = images.length === 0;
     console.log(images);
 
     return (
@@ -76,13 +81,13 @@ class App extends React.Component {
 
         {isLoading && <Loader isLoading={isLoading} />}
 
-        {renderBtn && <Button onClick={this.fetchImages} />}
+        {renderBtn && <Button onClick={this.fetchImages} scroll={scrollTo()} />}
 
         {showModal && <Modal src={src} alt={alt} onClose={this.toggleModal} />}
 
         {error && <h1>{error}</h1>}
 
-        {start && <h2>Nothing, please start your search</h2>}
+        {nothing && <h2>Nothing, please start your search</h2>}
       </div>
     );
   }
