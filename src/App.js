@@ -35,13 +35,14 @@ class App extends React.Component {
 
   fetchImages = () => {
     const { searchQuery, page } = this.state;
-    const options = { page, searchQuery };
+    const q = searchQuery;
+    const options = { q, page };
     this.setState({ isLoading: true });
 
     getImg(options)
-      .then(resp => {
+      .then(hits => {
         this.setState(prevState => ({
-          images: [...prevState.images, ...resp.data.hits],
+          images: [...prevState.images, ...hits],
           page: prevState.page + 1,
         }));
       })
